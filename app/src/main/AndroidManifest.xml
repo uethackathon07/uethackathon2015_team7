@@ -16,6 +16,14 @@
             </intent-filter>
         </activity>
         <service android:name=".service.NotificationService"></service>
+        <receiver
+            android:name=".receiver.NotificationReceiver"
+            android:enabled="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

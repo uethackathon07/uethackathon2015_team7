@@ -12,6 +12,8 @@ import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by James Crabby on 11/20/2015.
@@ -38,14 +40,25 @@ public class NotificationService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        /*Intent myIntent = new Intent(this , NotificationService.class);
-    AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
-    PendingIntent pendingIntent = PendingIntent.getService(getApplicationContext(), 0, myIntent, 0);
-    Calendar calendar = Calendar.getInstance();
-    calendar.set(Calendar.HOUR_OF_DAY, 12);
-    calendar.set(Calendar.MINUTE, 00);
-    calendar.set(Calendar.SECOND, 00);
-    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 24 * 60 * 60 * 1000, pendingIntent);*/
+        updateTime();
         return Service.START_STICKY;
+    }
+
+    public void updateTime() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+                Calendar calendar = Calendar.getInstance();
+                int hour = calendar.get(Calendar.HOUR_OF_DAY);
+                int minute = calendar.get(Calendar.MINUTE);
+                int second = calendar.get(Calendar.SECOND);
+                if(hour == 7) {
+                    Toast.makeText(NotificationService.this, "aaaaa", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        }, 0, 1000);
     }
 }
