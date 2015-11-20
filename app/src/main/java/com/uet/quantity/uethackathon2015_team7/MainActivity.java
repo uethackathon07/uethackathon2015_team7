@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         
 
-        /*Intent service = new Intent(MainActivity.this, NotificationService.class);
-        startService(service);*/
+        Intent service = new Intent(MainActivity.this, NotificationService.class);
+        startService(service);
     }
 }
